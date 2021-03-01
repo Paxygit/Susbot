@@ -66,7 +66,8 @@ namespace Susbot
                 var result = await discCommandService.ExecuteAsync(context, argPos, discService);
                 if (!result.IsSuccess) Console.WriteLine(result.Error + ": " + result.ErrorReason);
             } //Finds . Commands, init command service
-            foreach (string strang in terms) {
+            foreach (string strang in terms) 
+            {
                 if (message.Content.ToLower().Contains(strang))
                 {
                     var role = context.Guild.Roles.FirstOrDefault(x => x.Name == "Sus");
@@ -89,8 +90,9 @@ namespace Susbot
                     File.WriteAllText(@"C:\Users\theon\source\repos\Susbot'\Susbot'\Modules\CurrentSus.txt", message.Author.Username);
                     File.WriteAllText(@"C:\Users\theon\source\repos\Susbot'\Susbot'\Modules\CurrentSusID.txt", message.Author.Id.ToString());
                     await (message.Author as IGuildUser).AddRoleAsync(role);
+                    return;
                 }
-            } //Loops for marked messages to pass sus role
+            } //Loops for marked messages to pass sus role and return
             return;
         }//Handle
     }
