@@ -3,7 +3,7 @@
 ## Commands
 * [.ping](#.ping)
 * [.who](#.help)
-* [.help] //TODO
+* .help //TODO
 
 
 ## .ping
