@@ -17,4 +17,4 @@ May make it controllable on a server by server basis? //TODO
 
 Contact Paxy#1234 on Discord for questions (or bugs... mainly interested in security vulnerabilities for finding ids and such).
 
-[invite me!](https://discord.com/oauth2/authorize?client_id=814653688563367956&scope=bot&permissions=268954688)
+## [invite me!](https://discord.com/oauth2/authorize?client_id=814653688563367956&scope=bot&permissions=268954688)
