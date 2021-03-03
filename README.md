@@ -15,6 +15,6 @@ Will tell everybody who is currently sus.
 ### Be careful what you type! More terms are added to the sus list every day. 
 May make it controllable on a server by server basis? //TODO
 
-```
-  Contact Paxy#1234 on Discord for questions (or bugs... mainly interested in security vulnerabilities for finding ids and such).
-```
+Contact Paxy#1234 on Discord for questions (or bugs... mainly interested in security vulnerabilities for finding ids and such).
+
+[invite me!](https://discord.com/oauth2/authorize?client_id=814653688563367956&scope=bot&permissions=268954688)
