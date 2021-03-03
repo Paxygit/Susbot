@@ -1,6 +1,6 @@
 # Susbot: C# Discord Bot that makes people suspicious.
-Here are some of the current commands.
 
+##Commands
 *[.ping]
 *[.who]
 *[.help] //TODO
