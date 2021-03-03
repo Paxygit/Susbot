@@ -1,8 +1,8 @@
 # Susbot: C# Discord Bot that makes people suspicious.
 
 ## Commands
-* [.ping]
-* [.who]
+* [.ping](#.ping)
+* [.who](#.help)
 * [.help] //TODO
 
 
@@ -14,3 +14,7 @@ Will tell everybody who is currently sus.
 
 ### Be careful what you type! More terms are added to the sus list every day. 
 May make it controllable on a server by server basis? //TODO
+
+```
+  Contact Paxy#1234 on Discord for questions (or bugs... mainly interested in security vulnerabilities for finding ids and such).
+```
