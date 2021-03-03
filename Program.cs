@@ -10,7 +10,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-
+using Susbot.Modules;
 namespace Susbot
 {
     class Program
@@ -25,6 +25,8 @@ namespace Susbot
         
         public async Task RunASync()
         {
+
+
             discClient = new DiscordSocketClient();
             discCommandService = new CommandService();
             discService = new ServiceCollection().AddSingleton(discClient).AddSingleton(discCommandService).BuildServiceProvider();
@@ -61,6 +63,7 @@ namespace Susbot
             
             if (message.Author.IsBot) return; //Ignore bot
 
+
             if (message.HasStringPrefix(".", ref argPos))
             {
                 var result = await discCommandService.ExecuteAsync(context, argPos, discService);
@@ -72,11 +75,10 @@ namespace Susbot
                 {
                     var role = context.Guild.Roles.FirstOrDefault(x => x.Name == "Sus");
 
-                    if (File.ReadAllText(@"C:\Users\theon\source\repos\Susbot'\Susbot'\Modules\CurrentSus.txt") != "")
+                    if (File.ReadAllText(@"C:\Users\theon\source\repos\Susbot'\Susbot'\Modules\" + context.Guild.Id + @"_SusData.json") != "")
                     {
-                        var prevId = Convert.ToUInt64(File.ReadAllText(@"C:\Users\theon\source\repos\Susbot'\Susbot'\Modules\CurrentSusID.txt"));
-                        var prevUsername = File.ReadAllText(@"C:\Users\theon\source\repos\Susbot'\Susbot'\Modules\CurrentSus.txt");
-                        IGuildUser prevUser = guild.GetUser(prevId);
+                        SusData oldSusData = JsonConvert.DeserializeObject<SusData>(File.ReadAllText(@"C:\Users\theon\source\repos\Susbot'\Susbot'\Modules\" + context.Guild.Id + @"_SusData.json"));
+                        IGuildUser prevUser = guild.GetUser(oldSusData.id);
                         await prevUser.RemoveRoleAsync(role);
                     }
 
@@ -87,8 +89,13 @@ namespace Susbot
                     var channel = discClient.GetChannel(message.Channel.Id) as IMessageChannel;
                     await channel.SendMessageAsync("***Emergency Meeting!*** " + message.Author.Username + " is now sus!");
 
-                    File.WriteAllText(@"C:\Users\theon\source\repos\Susbot'\Susbot'\Modules\CurrentSus.txt", message.Author.Username);
-                    File.WriteAllText(@"C:\Users\theon\source\repos\Susbot'\Susbot'\Modules\CurrentSusID.txt", message.Author.Id.ToString());
+                    //REFORMAT TO JSON
+                    SusData susData = new SusData {username = user, id = message.Author.Id };
+
+                    string susDataText = JsonConvert.SerializeObject(susData);
+
+                    File.WriteAllText(@"C:\Users\theon\source\repos\Susbot'\Susbot'\Modules\" + context.Guild.Id + @"_SusData.json", susDataText);
+
                     await (message.Author as IGuildUser).AddRoleAsync(role);
                     return;
                 }

@@ -28,10 +28,15 @@ namespace Susbot.Modules
         [Command("who")]
         public async Task Who()
         {
-            var user = File.ReadAllText(@"C:\Users\theon\source\repos\Susbot'\Susbot'\Modules\CurrentSus.txt");
-            if (user == "")
-                await ReplyAsync("No sus...");
-            await ReplyAsync( user + " is sus...");
+            try
+            {                                                  
+                SusData oldSusData = JsonConvert.DeserializeObject<SusData>(File.ReadAllText(@"C:\Users\theon\source\repos\Susbot'\Susbot'\Modules\" + Context.Guild.Id + @"_SusData.json"));
+                await ReplyAsync(oldSusData.username + " is sus...");
+            }
+            catch
+            {
+                await ReplyAsync("No sus..." + "\n\n\n``or something is bugged. If I've called somebody sus before in this server, contact Paxy#1234 and he might fix it.``");
+            }
         } //Prints current sus from sustxt
 
         
